@@ -862,15 +862,15 @@ while True:
 
 ## **6. Related Links**
 
-**[Download Code](Code.rar)**
+1. **[Download Code](Code.rar)**  
 
-**[Download Library](QMI8658.zip)**
+2. **[Download Library](QMI8658.zip)**
 
-**[Keyestudio Official Website](https://www.keyestudio.com)**
+3. **[Keyestudio Official Website](https://www.keyestudio.com)**
   
-**[Arduino Official Website](https://www.arduino.cc)**
+4. **[Arduino Official Website](https://www.arduino.cc)**
 
-**[Espressif Official Website](https://www.espressif.com)**
+5. **[Espressif Official Website](https://www.espressif.com)**
 
-**[PlatformIO Official Website](https://platformio.org/)**
+6. **[PlatformIO Official Website](https://platformio.org/)**
   
