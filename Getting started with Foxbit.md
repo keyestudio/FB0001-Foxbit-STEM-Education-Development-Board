@@ -88,17 +88,17 @@ Supports Python programming, suitable for rapid prototype development, with a si
 
 **Other development environments will be updated successively.**
 
-### **Using Arduino IDE to Develop FoxBit**
+## **6. Using Arduino IDE to Develop FoxBit**
 
-#### **1. Install the Arduino Development Environment**
+### **1. Install the Arduino Development Environment**
 
-##### **1.1 Install Arduino IDE**
+#### **1.1 Install Arduino IDE**
 
 1.  Visit the [Arduino official website](https://www.arduino.cc/en/software) to download Arduino IDE.
 2.  Install Arduino IDE based on your operating system (Windows, macOS, or Linux).  
     ![IMG_260](media/f811aae64c251ce345e58dc2d8cf710c.png)
 
-##### **1.2 Install ESP32 Board Support**
+#### **1.2 Install ESP32 Board Support**
 
 1.  Open Arduino IDE.
 2.  Click on **File > Preferences**.
@@ -118,7 +118,7 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 7.  Find **esp32 by Espressif Systems**, then click **Install**.  
 ![IMG_263](media/d321d84b031fd783b221ec9e699f146c.png)
 
-##### **1.3 Select the Development Board**
+#### **1.3 Select the Development Board**
 
 1.  Connect the Foxbit development board to your computer using a USB cable.
 2.  In Arduino IDE, click on **Tools > Board > ESP32 Arduino**, and select **ESP32 Dev Module** (or similar ESP32 development board).  
@@ -126,9 +126,9 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 3.  Click on **Tools > Port**, and select the COM port corresponding to the Foxbit development board.  
     ![IMG_265](media/97b63ed3a0120c06a793e294c147e8e6.png)
 
-#### **2. Module Functions and Application Examples**
+### **2. Module Functions and Application Examples**
 
-##### **2.1 Buttons A and B**
+#### **2.1 Buttons A and B**
 
 **Description**
 
@@ -160,7 +160,7 @@ void loop() {
 }
 ```
 
-##### **2.2 Touch Functionality**
+#### **2.2 Touch Functionality**
 
 **Description**
 
@@ -187,15 +187,28 @@ void onTouch() {
 }
 ```
 
-##### **2.3 Six-Axis Accelerometer**
+#### **2.3 Six-Axis Accelerometer**
 
 **Description**
 
 -   QMI8658C for motion detection and attitude awareness, using I2C interface (SDA: GPIO21, SCL: GPIO22).
 -   Can detect acceleration and angular velocity, suitable for motion detection and posture recognition applications.
 
+Before starting the code, we need to install the library files.
+**Steps for install QMI8658 Library**
+
+1. **Download the Library**:
+   -  **[Download Library](QMI8658.zip)**
+
+2. **Open Arduino IDE**.
+
+3. **Import ZIP Library**:
+   - Click on **“Sketch”** > **“Include Library”** > **“Add .ZIP Library...”**.
+   - Choose the downloaded **QMI8658 ZIP** file and click **“Open”**.
+
 **Example Code: Read Acceleration and Gyroscope Data**  
-This code reads acceleration and gyroscope data using the QMI8658C library.
+
+
 
 ```cpp
 #include <Wire.h>
@@ -226,7 +239,7 @@ void QMI8658_Test()
 }
 ```
 
-##### **2.4 Light Sensor**
+#### **2.4 Light Sensor**
 
 **Description**
 
@@ -251,7 +264,7 @@ void loop() {
 }
 ```
 
-##### **2.5 Microphone**
+#### **2.5 Microphone**
 
 **Description**
 
@@ -276,7 +289,7 @@ void loop() {
 }
 ```
 
-##### **2.6 Buzzer**
+#### **2.6 Buzzer**
 
 **Description**
 
@@ -331,7 +344,7 @@ void loop() {
 }
 ```
 
-##### **2.7 RGB LED Dot Matrix**
+#### **2.7 RGB LED Dot Matrix**
 
 **Description**
 
@@ -383,7 +396,7 @@ void loop() {
 }
 ```
 
-##### **2.8 Temperature and Humidity Sensor**
+#### **2.8 Temperature and Humidity Sensor**
 
 **Description**
 
@@ -391,7 +404,15 @@ void loop() {
 -   Monitors ambient temperature and humidity.
 
 **Example Code: Read Temperature and Humidity Data**  
-This code reads data from the temperature and humidity sensor.
+
+Before starting the code, we need to install the library files.
+Steps to Import the Adafruit_AHTX0 Library
+1. **Open Arduino IDE**.
+2. Click on **“Tools”** > **“Manage Libraries...”**.
+3. Search for **“Adafruit AHTX0”** in the Library Manager.
+4. Once you find the library, click the **“Install”** button.
+5. After installation, you can use the library in your code by adding.
+
 
 ```cpp
 #include <Wire.h>
@@ -420,7 +441,7 @@ void loop() {
 }
 ```
 
-##### **2.9 SD Card Expansion Interface**
+#### **2.9 SD Card Expansion Interface**
 
 **Description**
 
@@ -471,7 +492,7 @@ void loop() {
 }
 ```
 
-##### **2.10 Power Detection Module**
+#### **2.10 Power Detection Module**
 
 **Description**
 
@@ -507,15 +528,15 @@ void loop() {
 }  
 ```
 
-### **Developing with MicroPython on Foxbit**
+## **7. Using MicroPython to Develop FoxBit**
 
-#### **1. What is MicroPython?**
+### **1. What is MicroPython?**
 
 MicroPython is a lightweight implementation of Python designed for microcontrollers. It supports various development boards (like ESP32, micro:bit, etc.) and provides rich hardware control libraries, ideal for rapid development and learning.
 
-#### **2. Download and Install Thonny**
+### **2. Download and Install Thonny**
 
-##### **Download Thonny**
+#### **Download Thonny**
 
 1.  Open the official website: <https://thonny.org>.
 2.  Choose the version based on your operating system:
@@ -527,7 +548,7 @@ MicroPython is a lightweight implementation of Python designed for microcontroll
         sudo apt install thonny # For Debian/Ubuntu systems
         ```
 
-##### **Install Thonny**
+#### **Install Thonny**
 
 1.  Double-click the downloaded installation file (e.g., thonny-3.3.13.exe).  
     ![IMG_266](media/588558af58aac2ac95e8853845341bbd.png)
@@ -544,27 +565,27 @@ MicroPython is a lightweight implementation of Python designed for microcontroll
 5.  Click **Finish** when done.  
     ![IMG_270](media/9e1a55ddd2553b1f6caa4cea5f752b5e.png)
 
-##### **Launch Thonny**
+#### **Launch Thonny**
 
 1.  Double-click the Thonny icon on your desktop.
 2.  For the first startup, select your language and initial settings, then click **Let’s go!**.  
     ![IMG_271](media/30dac5c60378f18f5db8ac527d9db8a8.png)
 
-#### **3. Flash MicroPython Firmware**
+### **3. Flash MicroPython Firmware**
 
-##### **Connect ESP32**
+#### **Connect ESP32**
 
 1.  Use a USB cable to connect the ESP32 development board to your computer.
 2.  Open **Device Manager**, expand **Ports (COM & LPT)**, and confirm the board's COM port (e.g., USB-SERIAL CH340 (COM283)).  
     ![IMG_272](media/dc7655a92168c49d2d12931d63edd22d.png)
 
-##### **Open Thonny**
+#### **Open Thonny**
 
 1.  Launch Thonny IDE.
 2.  Go to the **Run** menu and select **Select interpreter...**.  
     ![IMG_273](media/a2c4436d0c996c493e96261469abb42e.png)
 
-##### **Install or Update Firmware**
+#### **Install or Update Firmware**
 
 1.  Firmware download link: <https://micropython.org/resources/firmware/esp32-20210902-v1.17.bin>
 2.  In the interpreter settings:
@@ -580,21 +601,21 @@ MicroPython is a lightweight implementation of Python designed for microcontroll
         ![IMG_275](media/01ac9000288c7390387c322d33b14dfd.png)
 4.  After flashing, click **Close** and then **OK**.
 
-##### **Return to Main Interface**
+#### **Return to Main Interface**
 
 1.  Close all settings windows to return to Thonny's main interface.
 2.  Click the **STOP** button on the main interface to ensure the board is ready to run code.  
     ![IMG_276](media/9b2c92934b146bd7624d73cec4c16cb8.png)
 
-#### **4. Test MicroPython Environment**
+### **4. Test MicroPython Environment**
 
-##### **Open Shell**
+#### **Open Shell**
 
 1.  In Thonny, ensure the **Shell** view is enabled (click **View > Shell**).
 2.  If connected successfully, the Shell should display the >>> prompt.  
     ![IMG_277](media/cfadf5d5bf2456044d6f735c9937f7f6.png)
 
-##### **Test Code**
+#### **Test Code**
 
 Type the following code in the Shell:
 
@@ -604,14 +625,14 @@ print("Hello, MicroPython!")
 
 If the message is printed successfully, it indicates the environment is set up correctly.
 
-#### **5. Upload Code to Foxbit**
+### **5. Upload Code to Foxbit**
 
 1.  Write code in Thonny.
 2.  Click **File > Save As**, select **MicroPython Device**, and save the code to the ESP32.
 
-#### **6. Module Functions and MicroPython Examples**
+### **6. Module Functions and MicroPython Examples**
 
-##### **2.1 Buttons A and B**
+#### **2.1 Buttons A and B**
 
 **Description**
 
@@ -636,7 +657,7 @@ while True:
     time.sleep(0.1)
 ```
 
-##### **2.2 Touch Functionality**
+#### **2.2 Touch Functionality**
 
 **Description**
 
@@ -660,7 +681,7 @@ while True:
     time.sleep(0.1)
 ```
 
-##### **2.3 Six-Axis Accelerometer**
+#### **2.3 Six-Axis Accelerometer**
 
 **Description**
 
@@ -691,7 +712,7 @@ while True:
     time.sleep(0.5)
 ```
 
-##### **2.4 Light Sensor**
+#### **2.4 Light Sensor**
 
 **Description**
 
@@ -713,7 +734,7 @@ while True:
     time.sleep(0.5)
 ```
 
-##### **2.5 Microphone**
+#### **2.5 Microphone**
 
 **Description**
 
@@ -735,7 +756,7 @@ while True:
     time.sleep(0.1)
 ```
 
-##### **2.6 Buzzer**
+#### **2.6 Buzzer**
 
 **Description**
 
@@ -775,7 +796,7 @@ for note, dur in zip(melody, duration):
     time.sleep(0.1)
 ```
 
-##### **2.7 RGB LED Dot Matrix**
+#### **2.7 RGB LED Dot Matrix**
 
 **Description**
 
@@ -797,7 +818,7 @@ for i in range(35):
 np.write()
 ```
 
-##### **2.8 Temperature and Humidity Sensor**
+#### **2.8 Temperature and Humidity Sensor**
 
 **Description**
 
@@ -818,7 +839,7 @@ while True:
     time.sleep(1)
 ```
 
-##### **2.9 SD Card Expansion Interface**
+#### **2.9 SD Card Expansion Interface**
 
 **Description**
 
@@ -838,7 +859,7 @@ with open("/sd/test.txt", "w") as f:
     f.write("Hello, SD Card!")
 ```
 
-##### **2.10 Power Detection Module**
+#### **2.10 Power Detection Module**
 
 **Description**
 
@@ -860,7 +881,7 @@ while True:
 ```
 
 
-## **6. Related Links**
+## **8. Related Links**
 
 1. **[Download Code](Code.rar)**  
 
