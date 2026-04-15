@@ -86,7 +86,11 @@ Great for beginners, offering a wealth of libraries and example codes for quick 
 **MicroPython**  
 Supports Python programming, suitable for rapid prototype development, with a simple syntax that's easy to learn.
 
-**Other development environments will be updated successively.**
+**KidsBlock**  
+A Scratch-based graphical programming software designed for beginners and children. Users can create programs by dragging and dropping blocks, making it ideal for STEAM education and introductory hardware programming.
+
+**MicroBlocks**  
+A live, Scratch-like graphical programming environment that runs code immediately on the board without compilation. It supports real-time sensor feedback, autonomous offline operation, and parallel task execution, making it excellent for interactive learning.
 
 ## **6. Using Arduino IDE to Develop FoxBit**
 
@@ -881,7 +885,415 @@ while True:
 ```
 
 
-## **8. Related Links**
+
+## **8. Using KidsBlock to Develop FoxBit**
+
+### **1. What is KidsBlock?**
+
+KidsBlock is a friendly graphical programming software designed for beginners and children. It aims to help users quickly master hardware development through simple drag-and-drop programming. The software presents programming logic in a visual format, allowing users to create complex programs by combining blocks without writing complex code syntax. It supports various development boards including Arduino, Micro:bit, and ESP32.
+
+### **2. Download and Install KidsBlock**
+
+#### **Download KidsBlock**
+
+1.  Visit the official download page: <https://www.kidsblock.cc/download> or use the direct download links:
+    -   **Windows**: [KidsBlock.exe](https://xiazai.keyesrobot.cn/KidsBlock.exe)
+    -   **macOS**: [KidsBlock.dmg](https://xiazai.keyesrobot.cn/KidsBlock.dmg)
+
+#### **Install KidsBlock**
+
+**For Windows:**
+1.  Double-click the downloaded `KidsBlock.exe` file.
+2.  Follow the prompts in the installation wizard.
+3.  Choose whether to install for all users or only for the current user.
+4.  Click **Install** and wait for the process to complete.
+
+**For macOS:**
+1.  Double-click the downloaded `KidsBlock.dmg` file.
+2.  Drag the KidsBlock application icon into the "Applications" folder.
+
+### **3. Connect FoxBit and Configure KidsBlock**
+
+1.  Connect the FoxBit development board to the computer using a USB cable.
+2.  Open the KidsBlock software.
+3.  Click the **Board** icon in the top toolbar and select **ESP32** (if there is a specific FoxBit board in the list, select it).
+4.  Click the **Connect** icon, select the COM port corresponding to your FoxBit development board, and then click **Connect**.
+5.  After a successful connection, you can start dragging blocks from the left panel to the central workspace to build your program.
+
+### **4. Module Functions and KidsBlock Examples**
+
+#### **4.1 Buttons A and B**
+
+**Description**
+-   **Button A**: Digital button connected to GPIO0.
+-   **Button B**: Digital button connected to GPIO4.
+-   Used for user input, such as controlling device power or switching modes.
+
+**KidsBlock Example: Detect Button States**
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Control** category, attach a `forever` loop block.
+3.  Inside the loop, add an `if` block.
+4.  From the **Button** category, drag the `Button[A]was be pushed?` block into the condition of the `if` block, and check if the button is pressed.
+5.  If true, use the `print "Button A Pressed"` block from the **Serial** category, and delay for 0.3 seconds.
+6.  Repeat this process for Button B, using pin `4`.
+
+![4_1](./media/4_1.png)
+
+![4_11](./media/4_11.png)
+
+#### **4.2 Touch Functionality**
+
+**Description**
+
+-   Touch button connected to GPIO27.
+-   Can be used for touch interaction, like switching controls or sliding detection.
+
+**KidsBlock Example: Detect Touch Input**
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Control** category, attach a `forever` loop block.
+3.  Inside the loop, add an `if...else` block.
+4.  From the **Touch** category, drag the `[IO27] was be touched?` block into the condition of the `if` block, and check if it is touched.
+5.  If true, use the `print "Touch Detected!"` block from the **Serial** category, otherwise print "Not Touch Detected!".
+
+![4_2](./media/4_2.png)
+
+![4_12](./media/4_12.png)
+
+#### **4.3 Six-Axis Accelerometer**
+
+**Description**
+-   QMI8658C for motion detection and attitude awareness, using I2C interface (SDA: GPIO21, SCL: GPIO22).
+-   Can detect acceleration and angular velocity.
+
+**KidsBlock Example: Read Acceleration Data**
+
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Acceleration** category, drag out the `init QMI8658` block.
+3.  From the **Control** category, attach a `forever` loop block.
+4.  Inside the loop, use the `print` block from the **Serial** category to print the values of `QMI8658 read [Pitch]`, `QMI8658 read [Roll]`, and `QMI8658 read [Yaw]`.
+
+![4_3](./media/4_3.png)
+
+![4_13](./media/4_13.png)
+
+#### **4.4 Light Sensor**
+
+**Description**
+-   ALS-PT19-315C phototransistor, connected to GPIO39 (analog interface).
+-   Used for detecting ambient light intensity.
+
+**KidsBlock Example: Read Light Intensity**
+
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Control** category, attach a `forever` loop block.
+3.  Inside the loop, use the `print` block from the **Serial** category to print the value.
+4.  For the value to print, drag out the `read the value light [IO39]` block from the **Light** category.
+5.  Add a `wait [0.3] seconds` block from the **Control** category to slow down the reading speed.
+
+![4_4](./media/4_4.png)
+
+![](./media/4_14.png)
+
+#### **4.5 Microphone**
+
+**Description**
+-   Used for sound detection, connected to GPIO35 (analog interface).
+-   Suitable for voice recognition and noise monitoring.
+
+**KidsBlock Example: Detect Sound Intensity**
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Control** category, attach a `forever` loop block.
+3.  Inside the loop, use the `print` block from the **Serial** category to print the value.
+4.  For the value to print, drag out the `read the value sound [IO35]` block from the **Sound** category.
+5.  Add a `wait [0.1] seconds` block from the **Control** category.
+
+![4_5](./media/4_5.png)
+
+![](./media/4_15.png)
+
+#### **4.6 Buzzer**
+
+**Description**
+-   Used for playing sounds or music, connected to GPIO33 (digital interface).
+
+**KidsBlock Example: Play Music**
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Music** category, drag out 7 `Music PIN#[IO33] frequency[NOTE_C3] duration[131]` blocks, sequentially change the frequencies to NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, and set the duration to 500 for all.
+3.  After uploading the code, you will hear the buzzer play Do, Re, Mi, Fa, Sol, La, Si. If you only want to play certain notes, you can press the reset button to play again.
+
+![4_6](./media/4_6.png)
+
+#### **4.7 RGB LED Dot Matrix**
+
+**Description**
+-   35 WS2812-2020 RGB LEDs, single wire control, connected to GPIO13.
+-   Can be used to display colors, animations, and scrolling text.
+
+**KidsBlock Example: Light Up RGB LED**
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **RGB** category, drag out the initialization block: `init RGB length [35] pin [IO13]`.
+3.  Drag out the `fill form pixel[0]count[34] withcolor[red]` block.
+4.  Drag out the `refresh` block to update the LEDs.
+
+![4_7](./media/4_7.png)
+
+#### **4.8 Temperature and Humidity Sensor**
+
+**Description**
+-   AHT20 for real-time monitoring, uses I2C interface (SDA: GPIO21, SCL: GPIO22).
+-   Monitors ambient temperature and humidity.
+
+**KidsBlock Example: Read Temperature and Humidity Data**
+
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **Control** category, attach a `forever` loop block.
+3.  Inside the loop, use the serial print block to print the values of `Temperature and humidity get[temperature]` and `Temperature and humidity get[humidity]` from the **Temperature and humidity** category.
+
+![4_8](./media/4_8.png)
+
+![](./media/4_16.png)
+
+#### **4.9 SD Card Expansion Interface**
+
+**Description**
+-   SPI interface for storage expansion.
+
+**KidsBlock Example: Read and Write SD Card Files**
+
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+2.  From the **SD Card** category, drag out the `init sd card CS:[5] MOSI:[23] MISO:[19] SCK:[18]` block.
+3.  Drag out the `write SD File [file.txt]Data[hello,world]NewLine[true]` block and change the file name to "test.txt".
+4.  Drag out the `SD refresh data` block to refresh the txt file.
+5.  Drag out `read[file.txt]`, change the file name to "test.txt", and read the content of the test.txt file.
+
+![4_9](./media/4_9.png)
+
+![](./media/4_17.png)
+
+#### **4.10 Power Detection Module**
+
+**Description**
+-   Power detection module (INA180A1IDBVR) detects supply current via an analog interface (GPIO36).
+-   Can monitor the power supply current or voltage.
+
+**KidsBlock Example: Detect Power Supply Current**
+1.  From the **Events** category, drag out the `when Arduino starts` block.
+
+2. Light up all RGB LEDs to increase current consumption so you can see the current value.
+
+3.  From the **Control** category, attach a `forever` loop block.
+
+4.  Inside the loop, use the `print` block from the **Serial** category to print the value.
+
+5. For the value to print, drag out the `read the calue of current` block from the **current** category.
+
+   
+
+![4_10](./media/4_10.png)
+
+![](./media/4_18.png)
+
+
+
+## **9. Using MicroBlocks to Develop FoxBit**
+
+### **1. What is MicroBlocks?**
+
+MicroBlocks is a free, Scratch-like graphical programming language designed for physical computing. It supports many educational microcontroller boards, including the ESP32. What makes MicroBlocks unique is its combination of live programming and autonomous operation. You can click on a block, and it runs immediately on the board, allowing you to see sensor values in real-time without waiting for code to compile. Once programming is complete, the board can run independently offline.
+
+### **2. Download and Install MicroBlocks**
+
+#### **Download MicroBlocks**
+
+1.  Visit the official website: <https://microblocks.fun/get-started>
+2.  You can run MicroBlocks directly in Chrome or Edge browsers, or download the standalone application for your operating system (Windows, macOS, Linux, or Chromebook).
+
+#### **Install MicroBlocks**
+
+**For Windows:**
+1.  Download the Windows installer.
+2.  Double-click the installer and follow the prompts to install MicroBlocks on your computer.
+
+**For macOS:**
+1.  Download the macOS DMG file.
+2.  Open the DMG file and drag the MicroBlocks application into your "Applications" folder.
+
+### **3. Flash MicroBlocks Firmware to FoxBit**
+
+Before programming the FoxBit development board with MicroBlocks, you need to install the MicroBlocks firmware on it.
+
+1.  Connect the FoxBit development board to the computer using a USB cable.
+2.  Open the MicroBlocks application or web editor.
+3.  Click the **Gear** icon (Settings) in the top right corner.
+4.  Select **update firmware on board**.
+5.  Select **ESP32** from the list of board types.
+6.  Select the COM port corresponding to your FoxBit development board.
+7.  Wait for the firmware flashing process to complete. A success message will be displayed when finished.
+
+### **4. Connect and Program**
+
+1.  After flashing the firmware, click the **USB icon** (Connect) in the top toolbar.
+2.  Select the COM port of your FoxBit development board to connect.
+3.  After a successful connection, a green circle will appear next to the USB icon.
+4.  You can now drag blocks from the categories on the left to the scripting area to build your program. Click any block or script to run it immediately on the FoxBit development board.
+
+### **5. Module Functions and MicroBlocks Examples**
+
+#### **5.1 Buttons A and B**
+
+**Description**
+-   **Button A**: Digital button connected to GPIO0.
+-   **Button B**: Digital button connected to GPIO4.
+-   Used for user input, such as controlling device power or switching modes.
+
+**MicroBlocks Example: Detect Button States**
+1.  From the **Control** category, drag out the `when started` block.
+2.  Attach a `forever` loop block.
+3.  Inside the loop, add an `if` block.
+4.  From the **Input** category, drag the `Button A` block into the condition of the `if` block, and check if it equals `0` (low level).
+5.  If true, use the `say "Button A Pressed"` block from the **Output** category.
+6.  Repeat this process for Button B, using pin `4`.
+
+![5_1](./media/5_1.png)
+
+#### **5.2 Touch Functionality**
+
+**Description**
+-   Touch button connected to GPIO27.
+-   Can be used for touch interaction, like switching controls or sliding detection.
+
+**MicroBlocks Example: Detect Touch Input**
+
+1.  From the **Control** category, drag out the `when started` block.
+2.  Attach a `forever` loop block.
+3.  Inside the loop, add an `if` block.
+4.  From the **Foxbit** category, drag the `fb pin 'logo' touched` block into the condition of the `if` block.
+5.  If true, use the `say "Touch Detected!"` block from the **Output** category. Delay for 500 milliseconds.
+6.  Add an else block to output "No touch detected".
+
+![5_2](./media/5_2.png)
+
+#### **5.3 Six-Axis Accelerometer**
+
+**Description**
+-   QMI8658C for motion detection and attitude awareness, using I2C interface (SDA: GPIO21, SCL: GPIO22).
+-   Can detect acceleration and angular velocity.
+
+**MicroBlocks Example: Read Acceleration Data**
+1.  Click the `Add Library` button to add the **Basic Sensors** library.
+2.  From the **Control** category, drag out the `when started` block.
+3.  Attach a `forever` loop block.
+4.  Inside the loop, use the `say []` block from the **Output** category to output these values.
+5.  Use the `tilt x`, `tilt y`, and `tilt z` blocks from the **Basic Sensors** category to output.
+6.  Delay for 200 milliseconds for observation.
+
+![5_3](./media/5_3.png)
+
+#### **5.4 Light Sensor**
+
+**Description**
+-   ALS-PT19-315C phototransistor, connected to GPIO39.
+-   Used for detecting ambient light intensity.
+
+**MicroBlocks Example: Read Light Intensity**
+1.  From the **Control** category, drag out the `when started` block.
+2.  Attach a `forever` loop block.
+3.  Inside the loop, use the `say` block from the **Output** category to output the value.
+5.  For the value to say, drag out the `fb light level` block from the **Foxbit** category.
+6.  Add a `wait [500] millisecs` block from the **Control** category to slow down the reading speed.
+7.  Click the script to start reading and displaying the light intensity value in real-time.
+
+![5_4](./media/5_4.png)
+
+#### **5.5 Microphone**
+
+**Description**
+-   Used for sound detection, connected to GPIO35 (analog interface).
+-   Suitable for voice recognition and noise monitoring.
+
+**MicroBlocks Example: Detect Sound Intensity**
+1.  From the **Control** category, drag out the `when started` block.
+2.  Attach a `forever` loop block.
+3.  Inside the loop, use the `say` block from the **Output** category to output the value.
+4.  For the value to say, drag out the `fb loudness` block from the **Foxbit** category.
+5.  Add a `wait [100] millisecs` block from the **Control** category.
+
+![5_5](./media/5_5.png)
+
+#### **5.6 Buzzer**
+
+**Description**
+-   Used for playing sounds or music, connected to GPIO33.
+
+**MicroBlocks Example: Play Sound**
+1.  From the **Tone** category, drag out the `play note [c] octave [0] for [500] ms` block.
+2.  Sequentially add the notes d, e, f, g, a, b.
+3.  Click the block to play once: Do, Re, Mi, Fa, Sol, La, Si.
+
+![5_6](./media/5_6.png)
+
+#### **5.7 RGB LED Dot Matrix**
+
+**Description**
+-   35 WS2812-2020 RGB LEDs, single wire control, connected to GPIO13.
+
+**MicroBlocks Example: Light Up RGB LED**
+
+1.  From the **NeoPixel** category, drag out the `fb set all NeoPixels` block and click it to change the color to red.
+2.  Click the block to light up the dot matrix.
+
+![5_7](./media/5_7.png)
+
+#### **5.8 Temperature and Humidity Sensor**
+
+**Description**
+-   AHT20 for real-time monitoring, uses I2C interface (SDA: GPIO21, SCL: GPIO22).
+-   Monitors ambient temperature and humidity.
+
+**MicroBlocks Example: Read Temperature and Humidity Data**
+
+1.  From the **Control** category, drag out the `when started` block.
+2.  Attach a `forever` loop block.
+3.  Inside the loop, use the `say` block from the **Output** category to output these values, and add multiple output boxes to make the block `say [Temperature:] [ ] [c] [Humidity:] [ ] [%]`.
+4.  From the **Foxbit** category, drag out the `fb temperature` and `fb humidity` blocks, and place them in the corresponding positions of the output block.
+5.  Add a 200-millisecond delay.
+
+![5_8](./media/5_8.png)
+
+#### **5.9 SD Card Expansion Interface**
+
+**Description**
+-   SPI interface for storage expansion.
+
+**MicroBlocks Example: Read and Write SD Card Files**
+
+1.  Click the `Add Library` button, go to `[] Other`, and find the **SDCard** library.
+2.  Create a file named 'test' on the SD card.
+3.  From the **SDCard** category, drag out the `open sd file []` block and enter the file name `test` to open the file.
+4.  From the **SDCard** category, drag out the `append line [ ] to sd file []` block and add the text "Hello, SD Card!" and the file name.
+5.  From the **Output** category, drag out the `say []` block.
+6.  From the **SDCard** category, drag out the `contents of sd file []` block, place it in the `say []` block, and add the file name "test" to read.
+7.  Click run to write "Hello, SD Card!" to the test.txt file, and then read it out. Each time you run this code, it will write a new line.
+
+![5_9](./media/5_9.png)
+
+#### **5.10 Power Detection Module**
+
+**Description**
+-   Power detection module (INA180A1IDBVR) detects supply current via an analog interface (GPIO36).
+-   Can monitor the power supply current or voltage.
+
+**MicroBlocks Example: Detect Power Supply Current**
+1.  From the **Control** category, drag out the `when started` block.
+2.  Use the `fb set all NeoPixels` block to light up all LEDs, increasing current usage to make it easier to view the current.
+3.  Attach a `forever` loop block.
+4.  Inside the loop, use the `say` block from the **Output** category to output the value.
+5.  For the value to say, drag out the `fb current` block from the **Foxbit** category.
+6.  Click run to see the current.
+
+![5_10](./media/5_10.png)
+
+## **10. Related Links**
 
 1. **[Download Code](Code.rar)**  
 
@@ -894,4 +1306,7 @@ while True:
 5. **[Espressif Official Website](https://www.espressif.com)**
 
 6. **[PlatformIO Official Website](https://platformio.org/)**
-  
+
+7. **[KidsBlock Official Website](https://www.kidsblock.cc/)**
+
+8. **[MicroBlocks Official Website](https://microblocks.fun/)**
